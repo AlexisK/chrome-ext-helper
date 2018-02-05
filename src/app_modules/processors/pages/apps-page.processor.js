@@ -1,0 +1,58 @@
+import { Processor, DomEl } from 'core/classes';
+
+import * as apps from 'app_modules/applications';
+
+export const AppsPageProcessor = new Processor({
+    name    : 'apps-page',
+    init    : (self) => {
+        self.currentApp = null;
+
+        self.appsContainer = new DomEl('div').cls('app-apps-page-container').attachTo(self.node);
+        self.appContainer = new DomEl('div').cls('app-apps-page-container hidden').attachTo(self.node);
+
+        self.appNavContainer = self.appContainer.cr('div').cls('app-navbar');
+        self.appNavContainer.cr('button').cls('app-navbar-button')
+            .addEventListener('click', () => self.closeApp())
+            .cr('img').attr({src: './svg/app.svg'});
+
+        self.appNavTitle = self.appNavContainer.cr('strong').cls('app-navbar-text');
+
+        self.registerApp = app => {
+            let appNode = self.appsContainer
+                .cr('div').cls('app-icon-block')
+                .addEventListener('click', ev => self.showApp(app));
+
+            appNode.cr('img').attr({ src: app.icon });
+            appNode.cr('strong').attr({ tooltip: app.title }).value(app.title);
+        };
+
+        self.showApp = app => {
+            self.closeApp();
+            self.appsContainer.node.classList.add('hidden');
+
+            self.currentApp = app;
+            self.appNavTitle.value(app.title);
+            self.appContainer.appendChild(self.currentApp.getView());
+
+            self.appContainer.node.classList.remove('hidden');
+        };
+
+        self.closeApp = () => {
+            self.appContainer.node.classList.add('hidden');
+            if ( self.currentApp ) {
+                self.currentApp.node.detach();
+            }
+            self.appsContainer.node.classList.remove('hidden');
+        };
+
+        for ( let appName in apps) {
+            self.registerApp(apps[appName]);
+        }
+    },
+    process : (self) => {
+
+    },
+    destroy: (self) => {
+
+    }
+});

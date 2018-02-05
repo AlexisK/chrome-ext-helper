@@ -1,0 +1,33 @@
+@import "globals";
+
+$tabs-border-color: $grey-3;
+
+.tabs-title {
+  @include clearfix;
+  z-index: 2;
+
+  > .tab-title {
+    float: left;
+    padding: 5px 10px;
+    border: 1px solid $tabs-border-color;
+    background-color: $grey-1;
+    cursor: pointer;
+
+    &.active {
+      background-color: white;
+      border-bottom-color: transparent;
+    }
+
+    + .tab-title {
+      border-left: none;
+    }
+  }
+
+  + .tabs-body {
+    margin-top: -1px;
+  }
+}
+
+.tabs-body {
+  border: 1px solid $tabs-border-color;
+}

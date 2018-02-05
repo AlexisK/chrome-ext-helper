@@ -1,0 +1,36 @@
+@import "globals";
+
+$navbar-height: 40px;
+$navbar-padding: 8px;
+
+$navbar-content-size: $navbar-height - $navbar-padding * 2;
+
+.app-navbar {
+  min-height: $navbar-height;
+  background: white;
+
+  @include clearfix;
+  @include mat-shadow;
+}
+
+.app-navbar-text {
+  box-sizing: border-box;
+  display: inline-block;
+  height: $navbar-height;
+  padding: $navbar-padding;
+  line-height: $navbar-content-size;
+}
+
+.app-navbar-button {
+  box-sizing: border-box;
+  float: left;
+  height: $navbar-height;
+  padding: $navbar-padding;
+  border: none;
+  background: none;
+
+  img {
+    width: auto;
+    height: $navbar-content-size;
+  }
+}

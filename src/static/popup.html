@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <title>AlexisK helper</title>
+    <base href="./"/>
+    <link href="./app.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="root main-content">
+    <div data-ref="signIn">
+        <form data-ref="signInForm">
+            <label>Email:</label>
+            <input data-ref="signInEmail" type="email" />
+            <label>Pwd:</label>
+            <input data-ref="signInPwd" type="password" />
+
+            <input type="submit" />
+        </form>
+    </div>
+    <div data-ref="mainContent" style="display: none;">
+        <div data-processors="tabs">
+            <div data-processors="tab, apps-page" data-processor-tab='{"title":"Apps"}' class=""></div>
+            <div data-processors="tab" data-processor-tab='{"title":"Actions"}' class="card">
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="./app.js"></script>
+</body>
+</html>

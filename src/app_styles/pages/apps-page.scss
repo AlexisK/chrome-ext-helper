@@ -1,0 +1,37 @@
+@import "globals";
+
+$icon-size: 48px;
+$icon-border-radius: 8px;
+$icon-spacing: 16px;
+
+.app-apps-page-container {
+  background: white;
+  @include clearfix;
+
+  .app-icon-block {
+    float: left;
+    width: $icon-size;
+    margin: $icon-spacing;
+
+    img {
+      width: $icon-size;
+      height: $icon-size;
+      border-radius: $icon-border-radius;
+
+      @include mat-shadow;
+    }
+    strong {
+      display: block;
+      padding-top: 8px;
+      text-align: center;
+      font: $font-primary;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  iframe {
+    width: 100%;
+    min-height: 100vw;
+  }
+}

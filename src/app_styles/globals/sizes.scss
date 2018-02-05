@@ -1,0 +1,9 @@
+$size-wrapper: 990px;
+
+@mixin clearfix() {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
