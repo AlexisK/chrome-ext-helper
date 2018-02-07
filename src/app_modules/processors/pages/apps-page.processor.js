@@ -1,4 +1,5 @@
 import { Processor, DomEl } from 'core/classes';
+import { domRefService } from 'core/services';
 
 import * as apps from 'app_modules/applications';
 
@@ -30,6 +31,10 @@ export const AppsPageProcessor = new Processor({
             self.closeApp();
             self.appsContainer.node.classList.add('hidden');
 
+            if( app.isWide ) {
+                domRefService.REF.mainContent.classList.add('wide');
+            }
+
             self.currentApp = app;
             self.appNavTitle.value(app.title);
             self.appContainer.appendChild(self.currentApp.getView());
@@ -38,6 +43,7 @@ export const AppsPageProcessor = new Processor({
         };
 
         self.closeApp = () => {
+            domRefService.REF.mainContent.classList.remove('wide');
             self.appContainer.node.classList.add('hidden');
             if ( self.currentApp ) {
                 self.currentApp.node.detach();

@@ -4,6 +4,7 @@ $icon-size: 48px;
 $icon-border-radius: 8px;
 $icon-spacing: 16px;
 
+
 .app-apps-page-container {
   background: white;
   @include clearfix;
@@ -28,10 +29,5 @@ $icon-spacing: 16px;
       text-overflow: ellipsis;
       overflow: hidden;
     }
-  }
-
-  iframe {
-    width: 100%;
-    min-height: 100vw;
   }
 }

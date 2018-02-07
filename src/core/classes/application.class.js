@@ -8,6 +8,7 @@ export class Application {
         this.icon = params.icon;
         this.defaultData = params.defaultData;
         this.createViewWorker = params.createView || (() => new DomEl('div'));
+        this.isWide = params.isWide || false;
 
         this.data = null;
         this.ev = new EventManager();

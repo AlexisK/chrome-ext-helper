@@ -5,23 +5,28 @@ export const BrowserApplication = new Application({
     description: 'Iframe!',
     icon: './svg/internet.svg',
     defaultData: {
-        lastLink: 'about:blank'
+        link: 'about:blank'
     },
+    isWide: true,
     createView: function() {
-        this.rootNode = new DomEl('div');
-        this.pathNode = this.rootNode.cr('input').attr({type:'text'}).value(this.data.lastLink);
-        this.iframe = this.rootNode.cr('iframe').attr({src: this.data.lastLink});
+        this.lastLink = this.data.link;
+        this.rootNode = new DomEl('div').cls('app-application-browser');
+        this.pathNode = this.rootNode.cr('input').attr({type:'text'}).value(this.data.link);
+        this.iframeWrap = this.rootNode.cr('div').cls('iframe-wrap');
+        this.iframe = this.iframeWrap.cr('iframe').attr({src: this.data.link});
 
         this.pathNode.addEventListener('keyup', ev => {
             if ( ev.keyCode === 13 ) { // Enter
-                this.data.lastLink = this.pathNode.getValue();
+                this.data.link = this.pathNode.getValue();
                 this.save();
             }
         });
 
-        console.log(this.data);
         this.ev.subscribe('data', () => {
-            this.iframe.attr({src: (this.data.lastLink)});
+            if ( this.data.link !== this.lastLink ) {
+                this.iframe.attr({src: (this.data.link)});
+            }
+            this.lastLink = this.data.link;
         });
 
         return this.rootNode;

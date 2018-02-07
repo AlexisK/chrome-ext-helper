@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<div class="root main-content">
+<div class="root main-content" data-ref="mainContent">
     <div data-ref="signIn">
         <form data-ref="signInForm">
             <label>Email:</label>
@@ -18,7 +18,7 @@
             <input type="submit" />
         </form>
     </div>
-    <div data-ref="mainContent" style="display: none;">
+    <div data-ref="authContent" style="display: none;">
         <div data-processors="tabs">
             <div data-processors="tab, apps-page" data-processor-tab='{"title":"Apps"}' class=""></div>
             <div data-processors="tab" data-processor-tab='{"title":"Actions"}' class="card">

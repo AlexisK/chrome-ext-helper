@@ -17,8 +17,8 @@ class Daemon {
             console.log('Daemon new connection', this.conn);
 
             this.conn.ev.subscribe('signIn', data => {
-                console.log('SignIn', data);
-                firebase.signInWithEmailAndPassword(data.email, data.pwd);
+                console.log('SignIn', data.email);
+                firebase.auth().signInWithEmailAndPassword(data.email, data.pwd);
             });
 
             this.conn.ev.subscribe('app-get', req => {
