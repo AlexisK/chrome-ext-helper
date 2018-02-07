@@ -6,6 +6,8 @@ $iframe-scale: 1.75;
   input {
     width: 100%;
     padding: 10px;
+    border: none;
+    border-top: 1px solid $grey-3;
   }
   .iframe-wrap {
     width: 100%;

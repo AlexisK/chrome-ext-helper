@@ -11,7 +11,8 @@ body {
 
 .main-content {
   flex: 1 0 auto;
-  width: 242px;
+  min-width: 242px;
+  max-width: 640px;
 
   &.wide {
     width: 640px;

@@ -1,0 +1,29 @@
+@import "globals";
+
+.fullscreen {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  padding: 80px 40px;
+  background: rgba(white,.8);
+
+  .modal {
+    max-width: 260px;
+    margin: auto;
+
+    .actions {
+      @include clearfix;
+      text-align: center;
+
+      button {
+        display: inline-block;
+        margin: 10px;
+        padding: 5px 10px;
+        border: none;
+        background-color: $grey-4;
+        color: white;
+        cursor: pointer;
+        @include mat-shadow;
+      }
+    }
+  }
+}
