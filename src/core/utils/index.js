@@ -1,3 +1,4 @@
-export * from './diff.js';
-export * from './lazy-balancer.js';
-export * from './log-exception.js';
+export * from './diff';
+export * from './lazy-balancer';
+export * from './log-exception';
+export * from './secure-eval';

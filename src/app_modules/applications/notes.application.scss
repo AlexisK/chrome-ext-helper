@@ -1,0 +1,22 @@
+@import "globals";
+
+.app-application-notes {
+  padding: 10px;
+
+  .content {
+
+    input {
+      padding: 2px 5px;
+      border: none;
+      border-bottom: 1px solid $grey-3;
+
+      &.dirty {
+        color: $red-1;
+      }
+    }
+
+    .group {
+      padding: 0 0 10px 20px;
+    }
+  }
+}

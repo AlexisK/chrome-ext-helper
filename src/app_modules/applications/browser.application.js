@@ -10,6 +10,7 @@ export const BrowserApplication = new Application({
     isWide: true,
     createView: function() {
         this.lastLink = this.data.link;
+
         this.rootNode = new DomEl('div').cls('app-application-browser');
         this.pathNode = this.rootNode.cr('input').attr({type:'text'}).value(this.data.link);
         this.iframeWrap = this.rootNode.cr('div').cls('iframe-wrap');

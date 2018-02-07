@@ -5,7 +5,7 @@
   "description": "This extension allows the user to change the background color of the current page.",
   "version": "1.0",
 
-  "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com https://*.firebaseio-demo.com; object-src 'self'",
+  "content_security_policy": "script-src 'self' 'unsafe-inline' https://cdn.firebase.com https://*.firebaseio.com https://*.firebaseio-demo.com; object-src 'self'",
   "background": {
     "scripts": ["daemon.js"],
     "persistent": false
