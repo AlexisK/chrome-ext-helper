@@ -23,6 +23,8 @@
 
     button {
       float: left;
+      border: none;
+      background: none;
     }
 
     strong {
@@ -32,7 +34,7 @@
 
     .input {
       box-sizing: border-box;
-      border-bottom: 1px solid $grey-3;
+      border-bottom: 1px solid $grey-1;
       @include clearfix;
 
       input {
@@ -40,7 +42,7 @@
       }
 
       .key {
-        min-width: 100px;
+        min-width: 120px;
         float: left;
       }
 
