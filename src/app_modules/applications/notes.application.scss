@@ -15,16 +15,35 @@
     }
   }
 
+  input, textarea {
+    background-color: transparent;
+    resize: none;
+  }
+
   .content {
+
+    .directory.edit-mode {
+      background-color: $grey-0;
+      @include mat-shadow;
+    }
 
     .group-title {
       @include clearfix;
+
+      &:hover {
+        background-color: $grey-2;
+      }
     }
 
     button {
       float: left;
       border: none;
       background: none;
+      z-index: 2;
+
+      &.right {
+        float: right;
+      }
     }
 
     strong {
@@ -34,11 +53,20 @@
 
     .input {
       box-sizing: border-box;
-      border-bottom: 1px solid $grey-1;
+      border-bottom: 1px solid transparent;
       @include clearfix;
 
-      input {
+      &.key-val {
+        border-color: $grey-1;
+      }
+
+      input, textarea {
         width: 100%;
+      }
+
+      textarea {
+        padding: 2px 5px;
+        border: none;
       }
 
       .key {
