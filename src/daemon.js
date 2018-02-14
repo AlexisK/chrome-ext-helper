@@ -30,6 +30,11 @@ class Daemon {
                     this.conn.send('app.'+req.app, this.databaseService.data.apps[req.app]);
                 });
             });
+            this.conn.ev.subscribe('app-set-targeted', req => {
+                this.databaseService.saveAppTargetedData(req).then(() => {
+                    this.conn.send('app.'+req.app, this.databaseService.data.apps[req.app]);
+                });
+            });
         });
 
         this.initFirebase();

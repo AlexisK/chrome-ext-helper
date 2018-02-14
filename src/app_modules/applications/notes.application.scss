@@ -28,6 +28,7 @@
     }
 
     .group-title {
+      cursor: pointer;
       @include clearfix;
 
       &:hover {

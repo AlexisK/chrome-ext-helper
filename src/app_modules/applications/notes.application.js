@@ -46,7 +46,7 @@ export const NotesApplication = new Application({
                 .addEventListener('mousedown', ev => {
                     ev.preventDefault();
                     elem.isEditing = !elem.isEditing;
-                    this.save();
+                    this.save(elem);
                 })
                 .cr('img').attr({src: elem.isEditing && 'svg/locked-1.svg' || 'svg/locked.svg'});
             if ( parentElem.isEditing ) {
@@ -58,7 +58,7 @@ export const NotesApplication = new Application({
                             let ind = parentElem.content.indexOf(elem);
                             if ( ind >= 0 ) {
                                 parentElem.content.splice(ind, 1);
-                                this.save();
+                                this.save(parentElem.content);
                             }
                         });
                     })
@@ -71,7 +71,7 @@ export const NotesApplication = new Application({
                         if ( ind > 0 ) {
                             parentElem.content.splice(ind, 1);
                             parentElem.content.splice(ind-1, 0, elem);
-                            this.save();
+                            this.save(parentElem.content);
                         }
                     })
                     .cr('img').attr({src: 'svg/arr-top.svg'});
@@ -83,7 +83,7 @@ export const NotesApplication = new Application({
                         if ( ind >= 0 && ind < parentElem.content.length-1 ) {
                             parentElem.content.splice(ind, 1);
                             parentElem.content.splice(ind+1, 0, elem);
-                            this.save();
+                            this.save(parentElem.content);
                         }
                     })
                     .cr('img').attr({src: 'svg/arr-bottom.svg'});
@@ -91,7 +91,7 @@ export const NotesApplication = new Application({
             titleBar.cr('strong')
                 .addEventListener('mousedown', () => {
                     elem.isOpened = !elem.isOpened;
-                    this.save();
+                    this.save(elem);
                 })
                 .value(elem.title || 'ROOT');
 
@@ -114,7 +114,7 @@ export const NotesApplication = new Application({
                                     isEditing: true,
                                     content: []
                                 });
-                                this.save();
+                                this.save(elem.content);
                             }
                         });
                     let textarea = groupNode
@@ -123,7 +123,7 @@ export const NotesApplication = new Application({
                         .value(lines.join('\n'))
                         .addEventListener('blur', ev => {
                             elem.content = [...directories, ...ev.target.value.split('\n')];
-                            this.save();
+                            this.save(elem.content);
                         })
                         .addEventListener('keyup', ev => {
                             let node = ev.target;
@@ -145,14 +145,6 @@ export const NotesApplication = new Application({
                                     this.renderField(values[i]).cls('key').attachTo(node);
                                 }
                                 this.renderField(values[values.length-1]).attachTo(node);
-
-                                // values[1] = values.slice(1).join(': ');
-                                // node.cr('div').cls('key').value(values[0]);
-                                // if ( /^https?:\/\//.exec(values[1]) ) {
-                                //     node.cr('a').value(values[1]).attr({href: values[1], target: 'blank'});
-                                // } else {
-                                //     node.cr('div').value(values[1]);
-                                // }
                             }
                         }
                     });

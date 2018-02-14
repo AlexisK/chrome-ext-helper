@@ -34,10 +34,47 @@ export class Application {
         return this.node || (this.node = this.createView());
     }
 
-    save() {
-        connectionService.send('app-set.'+this.title, {
-            app: this.title,
-            data: this.data
-        });
+    save(ref) {
+        if ( ref ) {
+            let path = this.searchSavePoint(ref);
+            if ( path ) {
+                connectionService.send('app-set-targeted.'+this.title, {
+                    app: this.title,
+                    data: ref,
+                    path: path.join('/')
+                });
+            }
+        } else {
+            connectionService.send('app-set.'+this.title, {
+                app: this.title,
+                data: this.data
+            });
+        }
+    }
+
+    searchSavePoint(obj, parent = this.data) {
+        if ( typeof(parent) !== 'object') {
+            return null;
+        }
+        if ( obj === parent) {
+            return [];
+        }
+        if ( parent.constructor === Array ) {
+            for (let k = 0;  k < parent.length; k++ ) {
+                let res = this.searchSavePoint(obj, parent[k]);
+                if ( res ) {
+                    return [k, ...res];
+                }
+            }
+            return null;
+        } else {
+            for (let k in parent ) {
+                let res = this.searchSavePoint(obj, parent[k]);
+                if ( res ) {
+                    return [k, ...res];
+                }
+            }
+            return null;
+        }
     }
 }

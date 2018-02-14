@@ -56,6 +56,10 @@ export class DatabaseService {
     saveAppData(req) {
         return this.ref('apps/'+req.app).set(req.data);
     }
+
+    saveAppTargetedData(req) {
+        return this.ref(['apps',req.app,req.path].join('/')).set(req.data);
+    }
 }
 
 export const databaseService = new DatabaseService();
