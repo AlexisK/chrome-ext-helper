@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import {EventManager} from 'core/classes';
 import {authService} from 'core/services';
 import * as apps from 'app_modules/applications';
 
@@ -12,19 +13,33 @@ const dummyUserData = {
 
 export class DatabaseService {
     constructor() {
+        this.ev = new EventManager();
         this.data = null;
         this.fetchStatePromise = null;
     }
 
     fetchState() {
-        this.ref().on('value', snapshot => {
-            this.data = snapshot.val();
-        });
         return this.fetchStatePromise || (this.fetchStatePromise = new Promise(resolve => {
             this.ref().once('value')
                 .then(v => v.val())
                 .then(v => {
+                    for (let k in apps) {
+                        let app = apps[k];
+
+                        this.subscribeAppData(app, data => {
+                            if ( data ) { // handle null
+                                v.apps[k] = data;
+                                this.ev.emit('app-data-update.'+app.title, [app, data]);
+                            } 
+                        });
+                    }
+
                     if ( v && v.version === ENV.storageVer ) {
+                        for (let k in dummyUserData.apps) {
+                            if ( ! v.apps[k] ) {
+                                v.apps[k] = dummyUserData.apps[k];
+                            }
+                        }
                         resolve(this.data = v);
                     } else {
                         this.initializeUserData().then(resolve);
@@ -34,7 +49,6 @@ export class DatabaseService {
     }
 
     initializeUserData() {
-        console.log(dummyUserData);
         return new Promise(resolve => {
             this.ref().set(dummyUserData)
                 .then(v => v.val())

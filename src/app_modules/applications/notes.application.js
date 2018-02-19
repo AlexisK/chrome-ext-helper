@@ -117,16 +117,22 @@ export const NotesApplication = new Application({
                                 this.save(elem.content);
                             }
                         });
+                    let savedValue = lines.join('\n');
                     let textarea = groupNode
                         .cr('div').cls('input')
                         .cr('textarea').attr({placeholder: 'text here...'})
-                        .value(lines.join('\n'))
+                        .value(savedValue)
                         .addEventListener('blur', ev => {
-                            elem.content = [...directories, ...ev.target.value.split('\n')];
-                            this.save(elem.content);
+                            let value = ev.target.value;
+                            if ( value !== savedValue ) {
+                                savedValue = value;
+                                elem.content = [...directories, ...value.split('\n')];
+                                this.save(elem.content);
+                            }
                         })
                         .addEventListener('keyup', ev => {
                             let node = ev.target;
+                            elem.content = [...directories, ...node.value.split('\n')];
                             node.style.minHeight = node.scrollHeight + 'px';
                         });
                     setTimeout(() => textarea.node.style.minHeight = textarea.node.scrollHeight + 'px', 1);

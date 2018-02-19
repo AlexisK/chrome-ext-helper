@@ -9,31 +9,46 @@ class Daemon {
         this.databaseService = databaseService;
 
         this.port = null;
+        this.connections = [];
 
         console.log('Daemon subscribing to connections!');
         chrome.runtime.onConnect.addListener(port => {
-            this.conn = new Connection(port);
-            this.checkAuth();
-            console.log('Daemon new connection', this.conn);
+            let conn = this.conn = new Connection(port);
+            this.connections.push(conn);
+            conn.ev.subscribe('disconnect', () => {
+                let ind = this.connections.indexOf(conn);
+                if ( ind >= 0 ) {
+                    this.connections.splice(ind, 1);
+                }
+            });
 
-            this.conn.ev.subscribe('signIn', data => {
+            this.checkAuth();
+            console.log('Daemon new connection', conn);
+
+            conn.ev.subscribe('signIn', data => {
                 console.log('SignIn', data.email);
                 firebase.auth().signInWithEmailAndPassword(data.email, data.pwd);
             });
 
-            this.conn.ev.subscribe('app-get', req => {
-                this.conn.send('app.'+req.app, this.databaseService.data.apps[req.app]);
+            conn.ev.subscribe('app-get', req => {
+                conn.send('app.'+req.app, this.databaseService.data.apps[req.app]);
             });
 
-            this.conn.ev.subscribe('app-set', req => {
+            conn.ev.subscribe('app-set', req => {
                 this.databaseService.saveAppData(req).then(() => {
-                    this.conn.send('app.'+req.app, this.databaseService.data.apps[req.app]);
+                    // this.conn.send('app.'+req.app, this.databaseService.data.apps[req.app]);
                 });
             });
-            this.conn.ev.subscribe('app-set-targeted', req => {
+            conn.ev.subscribe('app-set-targeted', req => {
                 this.databaseService.saveAppTargetedData(req).then(() => {
-                    this.conn.send('app.'+req.app, this.databaseService.data.apps[req.app]);
+                    // this.conn.send('app.'+req.app, this.databaseService.data.apps[req.app]);
                 });
+            });
+        });
+
+        databaseService.ev.subscribe('app-data-update', ([app, data]) => {
+            this.connections.forEach(conn => {
+                conn.send('app.'+app.title, data);
             });
         });
 

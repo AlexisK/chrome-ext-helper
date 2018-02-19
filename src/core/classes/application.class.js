@@ -18,6 +18,7 @@ export class Application {
 
     init() {
         connectionService.ev.subscribe('app.'+this.title, (data) => {
+            console.log('Application.init --> subscribe', {data});
             this.data = data;
             this.ev.emit('data', this.data);
         });

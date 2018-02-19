@@ -11,6 +11,8 @@ export class Connection {
                 this.ev.emit(msg.action, msg.data);
             }
         });
+
+        this.port.onDisconnect.addListener(() => this.ev.emit('disconnect'));
     }
 
     send(action, data) {

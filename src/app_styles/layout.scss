@@ -1,5 +1,7 @@
 @import "globals";
 
+$width-narrow: 242px;
+$width-wide: 680px;
 
 // general
 body {
@@ -11,11 +13,12 @@ body {
 
 .main-content {
   flex: 1 0 auto;
-  min-width: 242px;
-  max-width: 640px;
+  min-width: $width-narrow;
+  max-width: $width-wide;
 
   &.wide {
-    width: 640px;
+    min-width: $width-wide;
+    max-width: none;
   }
 }
 

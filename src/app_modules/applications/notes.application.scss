@@ -59,6 +59,12 @@
 
       &.key-val {
         border-color: $grey-1;
+
+        > a {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
       }
 
       input, textarea {
@@ -74,7 +80,11 @@
         min-width: 120px;
         float: left;
       }
+      a.key {
+        max-width: 120px;
+      }
 
+      > a,
       > div {
         padding: 2px 5px;
         white-space: nowrap;
