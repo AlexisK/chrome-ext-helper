@@ -29,6 +29,7 @@ export class DatabaseService {
                         this.subscribeAppData(app, data => {
                             if ( data ) { // handle null
                                 v.apps[k] = data;
+                                this.data.apps[app.title] = data;
                                 this.ev.emit('app-data-update.'+app.title, [app, data]);
                             } 
                         });
