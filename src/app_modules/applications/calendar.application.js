@@ -18,12 +18,15 @@ export const CalendarApplication = new Application({
     isWide: true,
     createView: function() {
         this.getUrlFromEmails = emails => {
-            let result = ['https://calendar.google.com/calendar/embed?'];
+            let result = [
+                'https://calendar.google.com/calendar/embed?',
+                'bgcolor='+encodeURIComponent('#ffffff')
+            ];
             emails.forEach((email, ind) => result.push([
                 'src='+encodeURIComponent(email),
-                'color='+encodeURIComponent(colors[ind % colors.length])
+                'color='+encodeURIComponent(colors[ind % colors.length]),
                 ].join('&')));
-            result.push('ctz=Europe%2FKiev')
+            result.push('ctz=Europe%2FKiev');
             return result.join('&');
         };
 

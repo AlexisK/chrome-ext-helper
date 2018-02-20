@@ -1,20 +1,5 @@
-@import "globals";
+@import "webview.mixin";
 
 .app-application-calendar {
-  input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid $grey-3;
-    border-width: 1px 0;
-  }
-  .iframe-wrap {
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
-  }
-  iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
+  @include webview;
 }

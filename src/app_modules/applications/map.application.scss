@@ -1,0 +1,5 @@
+@import "webview.mixin";
+
+.app-application-map {
+    @include webview;
+}
