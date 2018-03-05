@@ -39,6 +39,6 @@ export const BrowserApplication = new Application({
             }
         });
 
-        return this.rootNode;
+        return [this.rootNode];
     }
 });

@@ -59,11 +59,11 @@
 
       &.key-val {
         border-color: $grey-1;
+        white-space: nowrap;
 
         > a {
           text-overflow: ellipsis;
           overflow: hidden;
-          white-space: nowrap;
         }
       }
 
@@ -78,14 +78,14 @@
 
       .key {
         min-width: 120px;
-        float: left;
       }
-      a.key {
+      a.key, a.key + a {
         max-width: 120px;
       }
 
       > a,
       > div {
+        float: left;
         padding: 2px 5px;
         white-space: nowrap;
       }

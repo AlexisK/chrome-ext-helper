@@ -27,6 +27,6 @@ body {
 // Declarations
 @import "layout";
 @import "shared/index";
-@import "pages/index";
+@import "../app_modules/processors/pages/index";
 @import "../app_modules/applications/index";
 

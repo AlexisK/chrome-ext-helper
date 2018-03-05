@@ -10,16 +10,21 @@ export const AppsPageProcessor = new Processor({
 
         self.appsContainer = new DomEl('div').cls('app-apps-page-container').attachTo(self.node);
         self.appContainer = new DomEl('div').cls('app-apps-page-container hidden').attachTo(self.node);
+        self.appsContainerWrapper = self.appsContainer.cr('div').cls('apps-wrapper');
 
         self.appNavContainer = self.appContainer.cr('div').cls('app-navbar');
         self.appNavContainer.cr('button').cls('app-navbar-button')
             .addEventListener('click', () => self.closeApp())
             .cr('img').attr({src: './svg/app.svg'});
+        self.appNavSettingsButton = self.appNavContainer.cr('button').cls('app-navbar-button right')
+            .addEventListener('click', () => {});
+        self.appNavSettingsButton.cr('img').attr({src: './svg/settings-1.svg'});
 
         self.appNavTitle = self.appNavContainer.cr('strong').cls('app-navbar-text');
 
+
         self.registerApp = app => {
-            let appNode = self.appsContainer
+            let appNode = self.appsContainerWrapper
                 .cr('div').cls('app-icon-block')
                 .addEventListener('click', ev => self.showApp(app));
 
@@ -38,6 +43,12 @@ export const AppsPageProcessor = new Processor({
             self.currentApp = app;
             self.appNavTitle.value(app.title);
             self.appContainer.appendChild(self.currentApp.getView());
+
+            if ( self.currentApp.getSettingsView() ) {
+                self.appNavSettingsButton.node.style.display = 'block';
+            } else {
+                self.appNavSettingsButton.node.style.display = 'node';
+            }
 
             self.appContainer.node.classList.remove('hidden');
         };

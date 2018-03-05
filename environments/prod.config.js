@@ -5,7 +5,12 @@ module.exports = {
     },
     runtime: {
         name: 'prod',
-        api: '/api/',
-        storageVer: '1.0'
+        storageVer: '1.0',
+        api: {
+            path: '/api/',
+            maps: {
+                key: 'AIzaSyCXR960OzXuSyw8qK7HMeMAUIjW0ssH1Hk'
+            }
+        }
     }
 };

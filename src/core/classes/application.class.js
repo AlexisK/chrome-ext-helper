@@ -14,11 +14,11 @@ export class Application {
         this.ev = new EventManager();
 
         this.node = null;
+        this.settingsNode = null;
     }
 
     init() {
         connectionService.ev.subscribe('app.'+this.title, (data) => {
-            console.log('Application.init --> subscribe', {data});
             this.data = data;
             this.ev.emit('data', this.data);
         });
@@ -32,7 +32,14 @@ export class Application {
     }
 
     getView() {
-        return this.node || (this.node = this.createView());
+        return this.node || (([this.node, this.settingsNode] = this.createView()) && this.node);
+    }
+
+    getSettingsView() {
+        if ( !this.node ) {
+            [this.node, this.settingsNode] = this.createView();
+        }
+        return this.settingsNode;
     }
 
     save(ref) {

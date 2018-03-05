@@ -31,6 +31,6 @@ export const CalculatorApplication = new Application({
             }
         });
 
-        return this.rootNode;
+        return [this.rootNode];
     }
 });

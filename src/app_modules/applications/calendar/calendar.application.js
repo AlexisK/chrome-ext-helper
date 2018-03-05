@@ -55,6 +55,6 @@ export const CalendarApplication = new Application({
             this.iframe.attr({src: this.getUrlFromEmail(this.data.calendars)});
         });
 
-        return this.rootNode;
+        return [this.rootNode];
     }
 });

@@ -167,6 +167,6 @@ export const NotesApplication = new Application({
 
         this.renderDirectory(this.data);
 
-        return this.rootNode;
+        return [this.rootNode];
     }
 });

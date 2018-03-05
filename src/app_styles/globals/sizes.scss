@@ -1,5 +1,9 @@
 $size-wrapper: 990px;
 
+$icon-size: 48px;
+$icon-border-radius: 8px;
+$icon-spacing: 16px;
+
 @mixin clearfix() {
   &:after {
     content: '';

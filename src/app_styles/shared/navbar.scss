@@ -33,4 +33,8 @@ $navbar-content-size: $navbar-height - $navbar-padding * 2;
     width: auto;
     height: $navbar-content-size;
   }
+
+  &.right {
+    float: right;
+  }
 }
