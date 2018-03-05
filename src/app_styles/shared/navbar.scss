@@ -1,13 +1,14 @@
 @import "globals";
 
-$navbar-height: 40px;
-$navbar-padding: 8px;
+$navbar-height: 24px;
+$navbar-padding: 4px;
 
 $navbar-content-size: $navbar-height - $navbar-padding * 2;
 
 .app-navbar {
   min-height: $navbar-height;
-  background: white;
+  background: $grey-5;
+  color: white;
 
   @include clearfix;
   @include mat-shadow;
@@ -18,6 +19,7 @@ $navbar-content-size: $navbar-height - $navbar-padding * 2;
   display: inline-block;
   height: $navbar-height;
   padding: $navbar-padding;
+  font: $font-primary;
   line-height: $navbar-content-size;
 }
 
@@ -25,9 +27,14 @@ $navbar-content-size: $navbar-height - $navbar-padding * 2;
   box-sizing: border-box;
   float: left;
   height: $navbar-height;
-  padding: $navbar-padding;
+  padding: $navbar-padding 0 $navbar-padding $navbar-padding;
   border: none;
   background: none;
+  @include animate(opacity);
+
+  &[disabled] {
+    opacity: 0;
+  }
 
   img {
     width: auto;
@@ -36,5 +43,6 @@ $navbar-content-size: $navbar-height - $navbar-padding * 2;
 
   &.right {
     float: right;
+    padding: $navbar-padding $navbar-padding $navbar-padding 0;
   }
 }

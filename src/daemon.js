@@ -30,6 +30,12 @@ class Daemon {
                 firebase.auth().signInWithEmailAndPassword(data.email, data.pwd);
             });
 
+            conn.ev.subscribe('signOut', data => {
+                console.log('SignOut');
+                firebase.auth().signOut();
+                conn.send('SignOut');
+            });
+
             conn.ev.subscribe('app-get', req => {
                 conn.send('app.'+req.app, this.databaseService.data.apps[req.app]);
             });

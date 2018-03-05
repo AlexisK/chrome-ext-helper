@@ -1,0 +1,62 @@
+@import "globals";
+
+.mat-form a,
+.mat-link {
+  @include mat-link;
+}
+
+.mat-form input,
+.mat-form textarea,
+.mat-input,
+.mat-textarea,
+.mat-button {
+  min-width: 120px;
+  width: 100%;
+  padding: 2px 8px;
+
+  & + & {
+    margin-top: 1em;
+  }
+ }
+
+.mat-form input[type="text"],
+.mat-form input[type="number"],
+.mat-form input[type="email"],
+.mat-form input[type="password"],
+.mat-input {
+  height: 24px;
+  border: 1px solid $grey-2;
+  background: $grey-0;
+  font: $font-input;
+}
+
+.mat-form textarea,
+.mat-textarea {
+  border: 1px solid $grey-2;
+  background: $grey-0;
+  font: $font-input;
+}
+
+.mat-form input[type="button"],
+.mat-form input[type="submit"],
+.mat-button {
+  @include mat-shadow;
+  text-align: center;
+  border: none;
+  background-color: $blue-1;
+  color: white;
+  font: $font-button;
+  cursor: pointer;
+
+  &.mat-big {
+    padding: 5px 8px;
+    font: $font-button;
+  }
+}
+
+.mat-form label,
+.mat-label {
+  display: block;
+  margin-top: 1em;
+  color: $grey-6;
+}

@@ -7,7 +7,6 @@ export const BrowserApplication = new Application({
     defaultData: {
         link: 'about:blank'
     },
-    isWide: true,
     createView: function() {
         this.rootNode = new DomEl('div').cls('app-application-browser');
         this.pathNode = this.rootNode.cr('input').attr({type:'text'}).value(this.data.link);

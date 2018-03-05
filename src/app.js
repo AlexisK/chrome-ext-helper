@@ -6,6 +6,9 @@ import * as apps from 'app_modules/applications';
 export class App {
 
     constructor() {
+        [50,100,150,200].forEach(ts => setTimeout(() => {
+            document.body.style.minHeight = document.body.offsetHeight + 1 + 'px';
+        }, ts)); // fix extention popup height bug. MESSYYY SHIT
     }
 
     init() {
@@ -13,6 +16,7 @@ export class App {
         this.conn = connectionService;
         this.conn.ev.subscribe('hello', data => console.log('App received a hello packet', data));
         this.conn.ev.subscribe('authOk', user => this.onSignIn());
+        this.conn.ev.subscribe('signOut', () => window.location.reload());
 
         domRefService.REF.signInForm.addEventListener('submit', ev => {
             ev.preventDefault();
@@ -33,5 +37,6 @@ export class App {
         }
         renderer.process(document.body);
         domRefService.REF.authContent.style.display = 'block';
+
     }
 }

@@ -3,9 +3,14 @@ import {crDom} from 'core/helpers';
 
 export const TabsProcessor = new Processor({
     name: 'tabs',
-    init: (self) => {
+    init: (self, params) => {
         self.titleContainer = new DomEl('div').cls('tabs-title').attachTo(self.node);
         self.bodyContainer = new DomEl('div').cls('tabs-body').attachTo(self.node);
+
+        console.log({params});
+        if ( params['tabs-placement'] === 'bottom' ) {
+            self.titleContainer.attachTo(self.node);
+        }
 
         self.tabInstances = [];
         self.activeTabInstance = null;

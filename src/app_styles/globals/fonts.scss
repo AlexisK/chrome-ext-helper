@@ -1,2 +1,7 @@
 $font-family-primary: arial, sans-serif;
-$font-primary: 12px $font-family-primary;
+$font-family-input: monospace;
+$font-primary: 12px/20px $font-family-primary;
+$font-input: 12px/20px $font-family-input;
+$font-button: bold $font-primary;
+$font-button-large: bold 14/20px $font-family-primary;
+$font-title: bold 14px/20px $font-family-primary;

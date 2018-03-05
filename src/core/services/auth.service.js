@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import { connectionService } from './connection.service';
 
 export class AuthService {
     constructor() {
@@ -21,6 +22,10 @@ export class AuthService {
                 this.userNext(user);
             }
         });
+    }
+
+    signOut() {
+        connectionService.send('signOut');
     }
 }
 

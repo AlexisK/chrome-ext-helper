@@ -12,7 +12,6 @@
     float: left;
     width: $icon-size + $icon-spacing;
     margin: $icon-spacing/2;
-    padding: $icon-spacing/2;
     border: 1px solid transparent;
     cursor: pointer;
 
@@ -23,15 +22,16 @@
     img {
       width: $icon-size;
       height: $icon-size;
+      margin: $icon-spacing/2;
       border-radius: $icon-border-radius;
 
       @include mat-shadow;
     }
     strong {
       display: block;
-      padding-top: 8px;
+      padding-bottom: 8px;
       text-align: center;
-      font: $font-primary;
+      font: bold $font-primary;
       text-overflow: ellipsis;
       overflow: hidden;
     }

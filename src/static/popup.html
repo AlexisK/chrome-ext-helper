@@ -8,18 +8,20 @@
 
 <body>
 <div class="root main-content" data-ref="mainContent">
-    <div data-ref="signIn">
-        <form data-ref="signInForm">
+    <div data-ref="signIn" class="signInForm card">
+        <h2>AlexisK helper</h2>
+        <h3>Authentication</h3>
+        <form data-ref="signInForm" class="mat-form">
             <label>Email:</label>
             <input data-ref="signInEmail" type="email" />
             <label>Pwd:</label>
             <input data-ref="signInPwd" type="password" />
-
-            <input type="submit" />
+            <br />
+            <input type="submit" class="mat-big" />
         </form>
     </div>
     <div data-ref="authContent" style="display: none;">
-        <div data-processors="tabs">
+        <div data-processors="tabs" data-processor-tabs='{"tabs-placement":"bottom"}'>
             <div data-processors="tab, apps-page" data-processor-tab='{"title":"Apps"}' class=""></div>
             <div data-processors="tab, actions-page" data-processor-tab='{"title":"Actions"}' class="card">
             </div>

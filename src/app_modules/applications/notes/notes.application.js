@@ -120,7 +120,7 @@ export const NotesApplication = new Application({
                     let savedValue = lines.join('\n');
                     let textarea = groupNode
                         .cr('div').cls('input')
-                        .cr('textarea').attr({placeholder: 'text here...'})
+                        .cr('textarea').cls('mat-textarea').attr({placeholder: 'text here...'})
                         .value(savedValue)
                         .addEventListener('blur', ev => {
                             let value = ev.target.value;

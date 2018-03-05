@@ -3,6 +3,7 @@ import {EventManager} from 'core/classes';
 import {authService} from 'core/services';
 import * as apps from 'app_modules/applications';
 
+console.log(apps);
 const dummyUserData = {
     version: ENV.storageVer,
     apps: Object.keys(apps).reduce((acc, k) => (acc[apps[k].title] = apps[k].defaultData) && acc, {}),
@@ -31,7 +32,7 @@ export class DatabaseService {
                                 v.apps[k] = data;
                                 this.data.apps[app.title] = data;
                                 this.ev.emit('app-data-update.'+app.title, [app, data]);
-                            } 
+                            }
                         });
                     }
 

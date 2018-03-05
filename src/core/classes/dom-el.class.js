@@ -35,6 +35,20 @@ export class DomEl {
         }
     }
 
+    hide() {
+        this.node.classList.add('hidden');
+    }
+    show() {
+        this.node.classList.remove('hidden');
+    }
+
+    disable() {
+        this.node.setAttribute('disabled', true);
+    }
+    enable() {
+        this.node.removeAttribute('disabled');
+    }
+
     attachTo(target) {
         getNodeFromTarget(target).appendChild(this.node);
         return this;

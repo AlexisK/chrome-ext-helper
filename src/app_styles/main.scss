@@ -10,10 +10,12 @@ input, textarea, button,
 img, a {
   display: block;
   box-sizing: border-box;
+  outline: none;
 }
 
 body {
   font: $font-primary;
+  color: $grey-5;
 }
 
 .hidden {

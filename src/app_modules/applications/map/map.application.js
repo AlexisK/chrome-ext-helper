@@ -5,7 +5,6 @@ export const MapApplication = new Application({
     description: 'Iframe!',
     icon: './svg/map.svg',
     defaultData: {},
-    isWide: true,
     createView: function() {
         this.rootNode = new DomEl('div').cls('app-application-map');
         this.iframeWrap = this.rootNode.cr('div').cls('iframe-wrap');

@@ -1,0 +1,4 @@
+@mixin animate($rule: all, $ts: .15s, $mode: ease-out) {
+  transition: $rule $ts $mode;
+}
+
