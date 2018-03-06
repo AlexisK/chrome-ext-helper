@@ -1,0 +1,8 @@
+@import "globals";
+
+.app-actions-page-container {
+  background: white;
+  min-height: $small-view-height;
+  box-sizing: border-box;
+  @include clearfix;
+}

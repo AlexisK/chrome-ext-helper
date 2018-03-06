@@ -10,9 +10,9 @@ export const ActionsPageProcessor = new Processor({
             }],
             ['Logout', ev => authService.signOut()]
         ];
+        self.container = new DomEl('div').cls('app-actions-page-container').attachTo(self.node);
 
-        settings.forEach(([label, worker]) => new DomEl('button')
-            .attachTo(self.node)
+        settings.forEach(([label, worker]) => self.container.cr('button')
             .cls('mat-button')
             .value(label)
             .addEventListener('click', worker)

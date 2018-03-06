@@ -19,6 +19,7 @@ export class App {
         this.conn.ev.subscribe('authOk', user => {
             clientStateService.user$.next(user);
             clientStateService.isAuthorized$.next(true);
+            this.onSignIn();
         });
         this.conn.ev.subscribe('signOut', user => {
             clientStateService.user$.next(null);
@@ -26,35 +27,34 @@ export class App {
             window.location.reload();
         });
 
-        domRefService.REF.signInForm.addEventListener('submit', ev => {
+        domRefService.REF['signInForm'].addEventListener('submit', ev => {
             ev.preventDefault();
 
             this.conn.send('signIn', {
-                email: domRefService.REF.signInEmail.value,
-                pwd: domRefService.REF.signInPwd.value
+                email: domRefService.REF['signInEmail'].value,
+                pwd: domRefService.REF['signInPwd'].value
             });
         });
 
 
-        clientStateService.isAuthorized$.filter(v => v).subscribe(() => this.onSignIn());
         clientStateService.isMaximized$.subscribe(isWide => {
             if( isWide ) {
-                domRefService.REF.mainContent.classList.add('wide');
+                domRefService.REF['mainContent'].classList.add('wide');
             } else {
-                domRefService.REF.mainContent.classList.remove('wide');
+                domRefService.REF['mainContent'].classList.remove('wide');
             }
         });
     }
 
 
     onSignIn() {
-        domRefService.REF.signIn.style.display = 'none';
+        domRefService.REF['signIn'].style.display = 'none';
 
         for (let appName in apps) {
             apps[appName].init();
         }
         renderer.process(document.body);
-        domRefService.REF.authContent.style.display = 'block';
+        domRefService.REF['authContent'].style.display = 'block';
 
     }
 }

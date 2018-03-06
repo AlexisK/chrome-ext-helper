@@ -6,7 +6,7 @@ import * as apps from 'app_modules/applications';
 export const AppsPageProcessor = new Processor({
     name    : 'apps-page',
     init    : (self) => {
-        self.appsContainer = new DomEl('div').cls('app-apps-page-container').attachTo(self.node);
+        self.appsContainer = new DomEl('div').cls('app-apps-page-container apps-list').attachTo(self.node);
         self.appContainer = new DomEl('div').cls('app-apps-page-container hidden').attachTo(self.node);
 
         self.appsContainerWrapper = self.appsContainer.cr('div').cls('apps-wrapper');

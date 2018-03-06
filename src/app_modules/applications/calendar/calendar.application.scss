@@ -1,5 +1,9 @@
 @import "../webview.mixin";
 
 .app-application-calendar {
-  @include webview;
+  @include webview(-24px);
+}
+
+.wide .app-application-calendar .iframe-wrap {
+  height: 520px;
 }

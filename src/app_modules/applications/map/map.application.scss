@@ -3,3 +3,7 @@
 .app-application-map {
     @include webview;
 }
+
+.wide .app-application-map .iframe-wrap {
+    height: 520px;
+}

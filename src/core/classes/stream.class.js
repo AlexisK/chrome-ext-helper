@@ -15,6 +15,7 @@ export class Subscription {
 
 export class Stream {
     constructor() {
+        this.class = Stream;
         this.subscriptions = [];
         this.data = null;
         this.lastArgs = [];
@@ -46,7 +47,7 @@ export class Stream {
     }
 
     _createStream(worker) {
-        let stream = new Stream();
+        let stream = new this.class();
         let subscription = this.subscribe((...args) => worker(stream, args));
         stream.onFinish.push(() => subscription.unsubscribe());
         return stream;
@@ -77,6 +78,7 @@ export class Stream {
 export class BehaviourStream extends Stream {
     constructor(data) {
         super();
+        this.class = BehaviourStream;
         this.next(data);
     }
 

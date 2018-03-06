@@ -1,8 +1,13 @@
 @import "globals";
 
 .app-apps-page-container {
-  background: white;
+  min-height: $small-view-height;
   @include clearfix;
+
+  &.apps-list {
+    max-width: 440px;
+    margin: auto;
+  }
 
   .apps-wrapper {
     padding: 10px 20px;
@@ -35,5 +40,11 @@
       text-overflow: ellipsis;
       overflow: hidden;
     }
+  }
+}
+
+.wide .app-apps-page-container {
+  .apps-wrapper > h3 {
+    text-align: center;
   }
 }
