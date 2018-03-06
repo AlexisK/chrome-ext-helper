@@ -3,7 +3,7 @@ import {Application, DomEl} from "core/classes";
 export const MapApplication = new Application({
     title: 'Map',
     description: 'Iframe!',
-    icon: './svg/map.svg',
+    icon: './svg/map-location.svg',
     defaultData: {},
     createView: function() {
         this.rootNode = new DomEl('div').cls('app-application-map');

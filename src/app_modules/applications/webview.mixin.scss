@@ -1,14 +1,6 @@
 @import "globals";
 
 @mixin webview($height-offset: 0) {
-  input {
-    width: 100%;
-    padding: 2px 8px;
-    border: none;
-    background-color: $grey-6;
-    color: white;
-    font: $font-input;
-  }
   .iframe-wrap {
     width: 100%;
     height: $small-view-height + $height-offset;

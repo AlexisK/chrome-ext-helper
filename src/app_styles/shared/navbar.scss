@@ -5,44 +5,75 @@ $navbar-padding: 4px;
 
 $navbar-content-size: $navbar-height - $navbar-padding * 2;
 
+.app-navbar-placeholder {
+  height: $navbar-height;
+}
+
 .app-navbar {
+  position: fixed;
+  top: 0; right: 0; left: 0;
   min-height: $navbar-height;
   background: $grey-5;
   color: white;
+  z-index: 100;
 
   @include clearfix;
-  @include mat-shadow;
-}
 
-.app-navbar-text {
-  box-sizing: border-box;
-  display: inline-block;
-  height: $navbar-height;
-  padding: $navbar-padding;
-  font: $font-primary;
-  line-height: $navbar-content-size;
-}
-
-.app-navbar-button {
-  box-sizing: border-box;
-  float: left;
-  height: $navbar-height;
-  padding: $navbar-padding 0 $navbar-padding $navbar-padding;
-  border: none;
-  background: none;
-  @include animate(opacity);
-
-  &[disabled] {
-    opacity: 0;
+  .app-navbar-input {
+    width: 100%;
+    padding: 2px 8px;
+    border: none;
+    background-color: $grey-6;
+    color: white;
+    font: $font-input;
+    resize: vertical;
   }
 
-  img {
-    width: auto;
-    height: $navbar-content-size;
+  .app-navbar-text {
+    box-sizing: border-box;
+    display: inline-block;
+    height: $navbar-height;
+    padding: $navbar-padding;
+    font: $font-primary;
+    line-height: $navbar-content-size;
   }
 
-  &.right {
-    float: right;
-    padding: $navbar-padding $navbar-padding $navbar-padding 0;
+  .app-navbar-button {
+    box-sizing: border-box;
+    float: left;
+    height: $navbar-height;
+    min-width: $navbar-height;
+    padding: $navbar-padding 0 $navbar-padding $navbar-padding;
+    border: none;
+    background: none;
+    @include animate(filter);
+
+    &[disabled] {
+      filter: grayscale(100%);
+    }
+
+    img {
+      width: auto;
+      height: $navbar-content-size;
+    }
+
+    &.right {
+      float: right;
+      padding: $navbar-padding $navbar-padding $navbar-padding 0;
+    }
+  }
+
+
+  .menu-container {
+    position: absolute;
+    top: 100%; right: 0; left: 0;
+    background-color: $grey-6;
+    color: white;
+  }
+
+  .actions-container {
+    position: absolute;
+    top: 100%; right: 0;
+    width: 100px;
   }
 }

@@ -4,10 +4,7 @@ $iframe-scale-small: 3.55;
 $iframe-scale-big: 1.75;
 
 .app-application-browser {
-  @include webview(-24px);
-  .iframe-wrap {
-    //height: 100vw;
-  }
+  @include webview;
   iframe {
     width: $iframe-scale-small * 100%;
     height: $iframe-scale-small * 100vw;

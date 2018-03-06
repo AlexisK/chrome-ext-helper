@@ -8,8 +8,10 @@ export const BrowserApplication = new Application({
         link: 'about:blank'
     },
     createView: function() {
+        this.pathNode = new DomEl('input').cls('app-navbar-input')
+            .attr({type:'text'}).value(this.data.link);
+
         this.rootNode = new DomEl('div').cls('app-application-browser');
-        this.pathNode = this.rootNode.cr('input').attr({type:'text'}).value(this.data.link);
         this.iframeWrap = this.rootNode.cr('div').cls('iframe-wrap');
         this.iframe = this.iframeWrap.cr('iframe').attr({src: this.data.link});
 
@@ -38,6 +40,6 @@ export const BrowserApplication = new Application({
             }
         });
 
-        return [this.rootNode];
+        return [this.rootNode, this.pathNode];
     }
 });

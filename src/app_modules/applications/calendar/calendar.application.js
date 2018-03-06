@@ -29,8 +29,10 @@ export const CalendarApplication = new Application({
             return result.join('&');
         };
 
+        this.pathNode = new DomEl('textarea').cls('app-navbar-input')
+            .value(this.data.calendars.join(';\n'));
+
         this.rootNode = new DomEl('div').cls('app-application-calendar');
-        this.pathNode = this.rootNode.cr('input').attr({type:'text'}).value(this.data.calendars.join('; '));
         this.iframeWrap = this.rootNode.cr('div').cls('iframe-wrap');
         this.iframe = this.iframeWrap.cr('iframe').attr({
             src: this.getUrlFromEmails(this.data.calendars),
@@ -54,6 +56,6 @@ export const CalendarApplication = new Application({
             this.iframe.attr({src: this.getUrlFromEmail(this.data.calendars)});
         });
 
-        return [this.rootNode];
+        return [this.rootNode, this.pathNode];
     }
 });
