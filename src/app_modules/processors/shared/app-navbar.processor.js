@@ -26,9 +26,6 @@ export const AppNavbarProcessor = new Processor({
             if ( app ) {
                 self.textNode.value(app.title);
                 self.closeButton.enable();
-                if ( app.isWide ) {
-
-                }
             } else {
                 self.textNode.value('Menu:');
                 self.closeButton.disable();

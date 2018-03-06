@@ -51,11 +51,5 @@ export const AppsPageProcessor = new Processor({
         for ( let appName in apps) {
             self.registerApp(apps[appName]);
         }
-    },
-    process : (self) => {
-
-    },
-    destroy: (self) => {
-
     }
 });

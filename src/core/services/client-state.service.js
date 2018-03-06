@@ -4,7 +4,7 @@ export class ClientStateService {
     constructor() {
         this.user$ = new Stream();
         this.isAuthorized$ = new BehaviourStream(false);
-        this.focusedApplication$ = new BehaviourStream(null);
+        this.focusedApplication$ = new BehaviourStream(null).debounce();
         this.runningApplications$ = new BehaviourStream([]);
         this.isMaximized$ = new BehaviourStream(false);
     }

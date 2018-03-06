@@ -18,6 +18,7 @@ export class Stream {
         this.subscriptions = [];
         this.data = null;
         this.lastArgs = [];
+        this.onFinish = [];
     }
 
     subscribe(worker) {
@@ -37,7 +38,39 @@ export class Stream {
 
         if ( ind >= 0 ) {
             this.subscriptions.splice(ind, 1);
+
+            if ( !this.subscriptions.length ) {
+                this.onFinish.forEach(w => w());
+            }
         }
+    }
+
+    _createStream(worker) {
+        let stream = new Stream();
+        let subscription = this.subscribe((...args) => worker(stream, args));
+        stream.onFinish.push(() => subscription.unsubscribe());
+        return stream;
+    }
+
+    filter(worker) {
+        return this._createStream((stream, args) => {
+            if ( worker(...args) ) {
+                stream.next(...args);
+            }
+        });
+    }
+
+    map(worker) {
+        return this._createStream((stream, args) => {
+            stream.next(worker(...args));
+        });
+    }
+
+    debounce(ts) {
+        return this._createStream((stream, args) => {
+            clearTimeout(stream._debounceLock);
+            stream._debounceLock = setTimeout(() => stream.next(...args), (ts || 1));
+        });
     }
 }
 

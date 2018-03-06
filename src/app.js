@@ -15,9 +15,16 @@ export class App {
     init() {
         console.log('App creating a connection!');
         this.conn = connectionService;
-        this.conn.ev.subscribe('hello', data => console.log('App received a hello packet', data));
-        this.conn.ev.subscribe('authOk', user => this.onSignIn());
-        this.conn.ev.subscribe('signOut', () => window.location.reload());
+
+        this.conn.ev.subscribe('authOk', user => {
+            clientStateService.user$.next(user);
+            clientStateService.isAuthorized$.next(true);
+        });
+        this.conn.ev.subscribe('signOut', user => {
+            clientStateService.user$.next(null);
+            clientStateService.isAuthorized$.next(false);
+            window.location.reload();
+        });
 
         domRefService.REF.signInForm.addEventListener('submit', ev => {
             ev.preventDefault();
@@ -29,6 +36,7 @@ export class App {
         });
 
 
+        clientStateService.isAuthorized$.filter(v => v).subscribe(() => this.onSignIn());
         clientStateService.isMaximized$.subscribe(isWide => {
             if( isWide ) {
                 domRefService.REF.mainContent.classList.add('wide');
