@@ -1,6 +1,7 @@
 @import "../webview.mixin";
 
-$iframe-scale: 1.75;
+$iframe-scale-small: 3.55;
+$iframe-scale-big: 1.75;
 
 .app-application-browser {
   @include webview;
@@ -8,9 +9,17 @@ $iframe-scale: 1.75;
     height: 100vw;
   }
   iframe {
-    width: $iframe-scale * 100%;
-    height: $iframe-scale * 100vw;
-    transform: scale(1/$iframe-scale);
+    width: $iframe-scale-small * 100%;
+    height: $iframe-scale-small * 100vw;
+    transform: scale(1/$iframe-scale-small);
     transform-origin: 0 0;
+  }
+}
+
+.wide .app-application-browser {
+  iframe {
+    width: $iframe-scale-big * 100%;
+    height: $iframe-scale-big * 100vw;
+    transform: scale(1/$iframe-scale-big);
   }
 }

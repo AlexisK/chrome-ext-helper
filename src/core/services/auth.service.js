@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import { BehaviourStream, Stream } from 'core/classes';
 import { connectionService } from './connection.service';
 
 export class AuthService {
@@ -6,6 +7,9 @@ export class AuthService {
         this.user = null;
         this.isAuthorized = false;
         this.userNext = null;
+
+        this.user$ = new Stream();
+        this.isAuthorized$ = new BehaviourStream(false);
 
         this.user$ = new Promise(resolve => {
             this.userNext = user => {
@@ -19,7 +23,9 @@ export class AuthService {
     init() {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
-                this.userNext(user);
+                this.userNext(this.user = user);
+                this.user$.next(user);
+                this.isAuthorized$.next(true);
             }
         });
     }

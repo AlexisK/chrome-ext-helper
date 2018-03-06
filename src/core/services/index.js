@@ -6,3 +6,5 @@ export * from './scenario.service';
 export * from './connection.service';
 export * from './dom-ref.service';
 export * from './modal.service';
+export * from './client-state.service';
+export * from './apps-manager.service';

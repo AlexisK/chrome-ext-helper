@@ -3,9 +3,11 @@
 @mixin webview() {
   input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid $grey-3;
-    border-width: 1px 0;
+    padding: 2px 8px;
+    border: none;
+    background-color: $grey-6;
+    color: white;
+    font: $font-input;
   }
   .iframe-wrap {
     width: 100%;

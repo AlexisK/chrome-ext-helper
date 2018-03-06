@@ -15,7 +15,6 @@ export const CalendarApplication = new Application({
     defaultData: {
         calendars: []
     },
-    isWide: true,
     createView: function() {
         this.getUrlFromEmails = emails => {
             let result = [

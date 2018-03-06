@@ -2,6 +2,7 @@ import {Connection} from 'core/classes/connection.class';
 import {rendererService as renderer, connectionService, domRefService} from 'core/services';
 
 import * as apps from 'app_modules/applications';
+import {clientStateService} from "./core/services";
 
 export class App {
 
@@ -25,6 +26,15 @@ export class App {
                 email: domRefService.REF.signInEmail.value,
                 pwd: domRefService.REF.signInPwd.value
             });
+        });
+
+
+        clientStateService.isMaximized$.subscribe(isWide => {
+            if( isWide ) {
+                domRefService.REF.mainContent.classList.add('wide');
+            } else {
+                domRefService.REF.mainContent.classList.remove('wide');
+            }
         });
     }
 

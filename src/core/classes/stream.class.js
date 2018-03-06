@@ -17,6 +17,7 @@ export class Stream {
     constructor() {
         this.subscriptions = [];
         this.data = null;
+        this.lastArgs = [];
     }
 
     subscribe(worker) {
@@ -26,7 +27,9 @@ export class Stream {
     }
 
     next(...args) {
-        this.subscriptions.forEach(sbs => sbs.next(...args));
+        this.data = args;
+        this.subscriptions.forEach(sbs => sbs.next(...args, ...this.lastArgs));
+        this.lastArgs = args;
     }
 
     unsubscribe(subscription) {
@@ -46,7 +49,7 @@ export class BehaviourStream extends Stream {
 
     subscribe(worker) {
         let subscription = super.subscribe(worker);
-        subscription.next(this.data);
+        subscription.next(...this.data);
         return subscription;
     }
 }
