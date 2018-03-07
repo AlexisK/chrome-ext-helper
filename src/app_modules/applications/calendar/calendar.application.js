@@ -30,7 +30,7 @@ export const CalendarApplication = new Application({
         };
 
         this.pathNode = new DomEl('textarea').cls('app-navbar-input')
-            .value(this.data.calendars.join(';\n'));
+            .value(this.data.calendars.join('\n'));
 
         this.rootNode = new DomEl('div').cls('app-application-calendar');
         this.iframeWrap = this.rootNode.cr('div').cls('iframe-wrap');
@@ -47,13 +47,13 @@ export const CalendarApplication = new Application({
 
         this.pathNode.addEventListener('keyup', ev => {
             if ( ev.keyCode === 13 ) { // Enter
-                this.setUpNewPath(this.pathNode.getValue().split(/;\s*/g));
+                this.setUpNewPath(this.pathNode.getValue().split(/\s*\n\s*/g));
             }
         });
 
         this.ev.subscribe('data', () => {
-            this.pathNode.value(this.data.calendars.join('; '));
-            this.iframe.attr({src: this.getUrlFromEmail(this.data.calendars)});
+            this.pathNode.value(this.data.calendars.join('\n'));
+            this.iframe.attr({src: this.getUrlFromEmails(this.data.calendars)});
         });
 
         return [this.rootNode, this.pathNode];

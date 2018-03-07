@@ -22,8 +22,8 @@ export const AppNavbarProcessor = new Processor({
         self.menuButton = self.parentNode.cr('button').cls('app-navbar-button')
             .addEventListener('click', () => {
                 self.menuOpen$.next(!self.menuOpen$.data[0]);
-            })
-            .cr('img').attr({src: './svg/menu-1.svg'});
+            });
+        self.menuButton.cr('img').attr({src: './svg/menu-14.svg'});
 
         self.parentNode.cr('div').cls('app-navbar-button right'); // placeholder
         self.closeButton = self.parentNode.cr('button').cls('app-navbar-button right')
@@ -67,6 +67,8 @@ export const AppNavbarProcessor = new Processor({
             || self.expandButtonImg.attr({src: './svg/plus.svg'})
         );
         clientStateService.focusedApplication$.subscribe(app => {
+            self.menuOpen$.next(false);
+
             if ( app ) {
                 self.textNode.value(app.title);
                 self.closeButton.enable();
@@ -75,12 +77,14 @@ export const AppNavbarProcessor = new Processor({
                 if ( settingsDom ) {
                     self.menuContainer.appendChild(settingsDom);
                     domInSettings.push(settingsDom);
+                    self.menuButton.enable();
                 }
             } else {
                 domInSettings.forEach(node => node.detach());
                 domInSettings.length = 0;
                 self.textNode.value('Menu:');
                 self.closeButton.disable();
+                self.menuButton.disable();
             }
         })
     },

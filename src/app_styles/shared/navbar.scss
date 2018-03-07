@@ -46,7 +46,7 @@ $navbar-content-size: $navbar-height - $navbar-padding * 2;
     padding: $navbar-padding 0 $navbar-padding $navbar-padding;
     border: none;
     background: none;
-    @include animate(filter);
+    @include animate;
 
     &[disabled] {
       filter: grayscale(100%);
