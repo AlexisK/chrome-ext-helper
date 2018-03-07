@@ -7,7 +7,7 @@
 
   "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com https://*.firebaseio-demo.com https://*.googleapis.com; object-src 'self'",
   "background": {
-    "scripts": ["daemon.js"],
+    "scripts": ["extdaemon.js"],
     "persistent": false
   },
   "content_scripts": [

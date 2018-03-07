@@ -13,7 +13,7 @@ export class Client {
     }
 
     init() {
-        console.log('App creating a connection!');
+        // console.log('App creating a connection!');
 
         this.conn.ev.subscribe('authOk', user => {
             clientStateService.user$.next(user);

@@ -1,5 +1,7 @@
 import {Application, DomEl} from "core/classes";
 
+const proxy = '';
+
 export const BrowserApplication = new Application({
     title: 'Browser',
     description: 'Iframe!',
@@ -13,7 +15,7 @@ export const BrowserApplication = new Application({
 
         this.rootNode = new DomEl('div').cls('app-application-browser');
         this.iframeWrap = this.rootNode.cr('div').cls('iframe-wrap');
-        this.iframe = this.iframeWrap.cr('iframe').attr({src: this.data.link});
+        this.iframe = this.iframeWrap.cr('iframe').attr({src: proxy+this.data.link});
 
         if ( chrome.extension ) {
             chrome.extension.onMessage.addListener(request => {
@@ -33,7 +35,7 @@ export const BrowserApplication = new Application({
             this.data.link = url;
             this.data.domain = url.split('/')[2];
             this.save();
-            this.iframe.attr({src: url});
+            this.iframe.attr({src: proxy+url});
         };
 
         this.pathNode.addEventListener('keyup', ev => {

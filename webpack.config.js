@@ -148,9 +148,10 @@ module.exports = (process_env) => {
     return {
         devtool: ENV.build.devtool,
         entry: {
-            app: PATH.source('app.js'),
             webapp: PATH.source('webapp.js'),
-            daemon: PATH.source('daemon.js'),
+            webworker: PATH.source('webworker.js'),
+            extclient: PATH.source('extclient.js'),
+            extdaemon: PATH.source('extdaemon.js'),
             styles: PATH.source('index.scss')
         },
         output: {

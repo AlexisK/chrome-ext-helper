@@ -11,7 +11,7 @@ export class Server {
         this.port = null;
         this.connections = [];
 
-        console.log('Daemon subscribing to connections!');
+        // console.log('Daemon subscribing to connections!');
         this.connections$.subscribe(conn => {
             this.conn = conn;
             this.connections.push(conn);
@@ -23,7 +23,7 @@ export class Server {
             });
 
             this.checkAuth();
-            console.log('Daemon new connection', conn);
+            // console.log('Daemon new connection', conn);
 
             conn.ev.subscribe('signIn', data => {
                 console.log('SignIn', data.email);
@@ -62,7 +62,7 @@ export class Server {
     }
 
     initFirebase() {
-        console.log('Daemon initiating firebase');
+        // console.log('Daemon initiating firebase');
         let config = {
             apiKey: "AIzaSyAiIAUxm2v1Vz8eEDWdi3kc--86EPngXh4",
             authDomain: "alexisk-work-db.firebaseapp.com",
@@ -75,7 +75,20 @@ export class Server {
     }
 
     checkAuth() {
-        let sbs = authService.user$.subscribe((user) => {
+        let sbs = authService.user$.subscribe((userData) => {
+            let user = [
+                'uid',
+                'displayName',
+                'email',
+                'metadata',
+                'phoneNumber',
+                'photoURL',
+                'refreshToken',
+                'w'
+            ].reduce((acc, key) => {
+                acc[key] = userData[key];
+                return acc;
+            }, {});
             databaseService.fetchState().then(() => this.conn.send('authOk', user));
             sbs.unsubscribe();
         });

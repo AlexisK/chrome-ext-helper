@@ -24,7 +24,7 @@ export const NotesApplication = new Application({
 
         // render
         this.renderField = (data) => {
-            if ( /^https?:\/\//.exec(data) ) {
+            if ( /^\w+:\/\//.exec(data) ) {
                 return new DomEl('a').value(data).attr({href: data, target: 'blank'});
             } else {
                 return new DomEl('div').value(data);

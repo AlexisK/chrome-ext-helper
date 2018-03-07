@@ -29,12 +29,12 @@ export const AppNavbarProcessor = new Processor({
         self.closeButton = self.parentNode.cr('button').cls('app-navbar-button right')
             .addEventListener('click', () => clientStateService.focusedApplication$.next(null));
         self.closeButton.cr('img').attr({src: './svg/error.svg'});
-        self.expandButton = self.parentNode.cr('button').cls('app-navbar-button right')
+        self.expandButton = self.parentNode.cr('button').cls('app-navbar-button right mobile-hidden')
             .addEventListener('click', () => {
                 clientStateService.isMaximized$.next(!clientStateService.isMaximized$.data[0]);
             });
         self.expandButtonImg = self.expandButton.cr('img');
-        self.actionsButton = self.parentNode.cr('button').cls('app-navbar-button right')
+        self.actionsButton = self.parentNode.cr('button').cls('app-navbar-button right mobile-hidden')
             .addEventListener('click', () => {
                 self.actionsOpen$.next(!self.actionsOpen$.data[0]);
             });
