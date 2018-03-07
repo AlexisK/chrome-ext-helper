@@ -60,6 +60,7 @@
       &.key-val {
         border-color: $grey-1;
         white-space: nowrap;
+        overflow: hidden;
 
         > a {
           text-overflow: ellipsis;

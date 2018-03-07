@@ -14,7 +14,7 @@ $m-navbar-content-size: $m-navbar-height - $m-navbar-padding * 2;
   position: fixed;
   top: 0; right: 0; left: 0;
   min-height: $navbar-height;
-  background: $grey-5;
+  background: $grey-disabled-icon;
   color: white;
   z-index: 100;
 
@@ -24,7 +24,7 @@ $m-navbar-content-size: $m-navbar-height - $m-navbar-padding * 2;
     width: 100%;
     padding: 2px 8px;
     border: none;
-    background-color: $grey-6;
+    background-color: $grey-5;
     color: white;
     font: $font-input;
     resize: vertical;
