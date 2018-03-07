@@ -34,7 +34,7 @@ export const NotesApplication = new Application({
         this.renderDirectory = (elem, parent = this.rootContent, parentElem = {}) => {
             elem.content = elem.content || [];
             let wrapNode = parent.cr('div').cls('directory ' + (elem.isEditing && 'edit-mode' || 'view-mode'));
-            let directories = elem.content.filter(v => (typeof(v) === 'object'));
+            let directories = elem.content.filter(v => v && (typeof(v) === 'object'));
 
             // title
             let titleBar = wrapNode.cr('div').cls('group-title');
