@@ -4,6 +4,7 @@
     <title>AlexisK helper</title>
     <base href="./"/>
     <link href="./app.css" type="text/css" rel="stylesheet" />
+    <meta name="viewport" id="viewport-id" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 
 <body>
@@ -25,6 +26,23 @@
         <div data-processors="apps-page"></div>
     </div>
 </div>
+<script type="text/javascript">
+    (function(){
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+            var ww = Math.min(window.innerWidth, window.outerWidth);
+            var mw = 282;
+            var ratio =  Math.min(ww / mw, 5);
+            console.log({ww,mw,ratio});
+            document.getElementById('viewport-id')
+                .setAttribute('content', [
+                    'initial-scale=' + Math.min(ratio, 1),
+                    'maximum-scale=' + ratio ,
+                    'minimum-scale=' + ratio ,
+                    'user-scalable=no, width=' + mw
+                ].join(', '));
+        }
+    })();
+</script>
 <script type="text/javascript" src="./webapp.js"></script>
 </body>
 </html>

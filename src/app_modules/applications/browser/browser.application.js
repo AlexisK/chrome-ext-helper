@@ -15,17 +15,19 @@ export const BrowserApplication = new Application({
         this.iframeWrap = this.rootNode.cr('div').cls('iframe-wrap');
         this.iframe = this.iframeWrap.cr('iframe').attr({src: this.data.link});
 
-        chrome.extension.onMessage.addListener(request => {
-            let url = request['iframe-url-hook'];
-            if ( url ) {
-                let urlParams = url.split('/');
-                if ( urlParams[2] && urlParams[2] === this.data.domain ) {
-                    this.data.link = url;
-                    this.pathNode.value(url);
-                    this.save();
+        if ( chrome.extension ) {
+            chrome.extension.onMessage.addListener(request => {
+                let url = request['iframe-url-hook'];
+                if ( url ) {
+                    let urlParams = url.split('/');
+                    if ( urlParams[2] && urlParams[2] === this.data.domain ) {
+                        this.data.link = url;
+                        this.pathNode.value(url);
+                        this.save();
+                    }
                 }
-            }
-        });
+            });
+        }
 
         this.setUpNewPath = url => {
             this.data.link = url;

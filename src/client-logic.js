@@ -45,9 +45,8 @@ export class Client {
             }
         });
 
-        clientStateService.isAlwaysMaximized$.filter(v => v).subscribe(() => {
-            domRefService.REF['mainContent'].classList.add('wide');
-        });
+        clientStateService.isAlwaysMaximized$.subscribe(state => state
+            && domRefService.REF['mainContent'].classList.add('wide'));
     }
 
 

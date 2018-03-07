@@ -18,7 +18,9 @@ body {
   color: $grey-5;
 }
 
-.hidden {
+.hidden,
+.mobile .mobile-hidden,
+.wide .wide-hidden {
   display: none;
 }
 

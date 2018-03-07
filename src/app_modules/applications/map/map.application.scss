@@ -1,3 +1,4 @@
+@import "globals";
 @import "../webview.mixin";
 
 .app-application-map {
@@ -6,4 +7,8 @@
 
 .wide .app-application-map .iframe-wrap {
     height: 520px;
+}
+
+.mobile .app-application-map .iframe-wrap {
+    height: calc(100vh - #{$m-navbar-height});
 }

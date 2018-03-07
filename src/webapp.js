@@ -1,5 +1,5 @@
 import {Stream} from 'core/classes/stream.class';
-import {connectionService, clientStateService} from "./core/services";
+import {connectionService, clientStateService, domRefService} from "./core/services";
 
 import { Server } from './server-logic';
 import { Client } from './client-logic';
@@ -12,4 +12,4 @@ new Client(connectionService).init();
 
 connectionsStream.next(connectionService);
 
-clientStateService.isAlwaysMaximized$.next(true);
+domRefService.REF['mainContent'].classList.add('mobile');

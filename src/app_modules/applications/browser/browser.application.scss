@@ -2,12 +2,13 @@
 
 $iframe-scale-small: 3.55;
 $iframe-scale-big: 1.75;
+$iframe-scale-mobile: 4;
 
 .app-application-browser {
   @include webview;
   iframe {
     width: $iframe-scale-small * 100%;
-    height: $iframe-scale-small * 100vw;
+    height: $iframe-scale-small * 100%;
     transform: scale(1/$iframe-scale-small);
     transform-origin: 0 0;
   }
@@ -20,7 +21,18 @@ $iframe-scale-big: 1.75;
 
   iframe {
     width: $iframe-scale-big * 100%;
-    height: $iframe-scale-big * 100vw;
+    height: $iframe-scale-big * 100%;
     transform: scale(1/$iframe-scale-big);
+  }
+}
+
+.mobile .app-application-browser {
+  .iframe-wrap {
+    height: calc(100vh - #{$m-navbar-height});
+  }
+  iframe {
+    width: $iframe-scale-mobile * 100%;
+    height: $iframe-scale-mobile * 100%;
+    transform: scale(1/$iframe-scale-mobile);
   }
 }

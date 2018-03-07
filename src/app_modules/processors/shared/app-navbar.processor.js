@@ -18,14 +18,14 @@ export const AppNavbarProcessor = new Processor({
         self.parentNode = new DomEl('div').cls('app-navbar').attachTo(self.node);
         new DomEl('div').cls('app-navbar-placeholder').attachTo(self.node);
 
-        self.parentNode.cr('div').cls('app-navbar-button'); // placeholder
+        self.parentNode.cr('div').cls('app-navbar-button mobile-hidden'); // placeholder
         self.menuButton = self.parentNode.cr('button').cls('app-navbar-button')
             .addEventListener('click', () => {
                 self.menuOpen$.next(!self.menuOpen$.data[0]);
             });
         self.menuButton.cr('img').attr({src: './svg/menu-14.svg'});
 
-        self.parentNode.cr('div').cls('app-navbar-button right'); // placeholder
+        self.parentNode.cr('div').cls('app-navbar-button right mobile-hidden'); // placeholder
         self.closeButton = self.parentNode.cr('button').cls('app-navbar-button right')
             .addEventListener('click', () => clientStateService.focusedApplication$.next(null));
         self.closeButton.cr('img').attr({src: './svg/error.svg'});

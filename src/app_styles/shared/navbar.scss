@@ -1,12 +1,13 @@
 @import "globals";
 
-$navbar-height: 24px;
-$navbar-padding: 4px;
-
 $navbar-content-size: $navbar-height - $navbar-padding * 2;
+$m-navbar-content-size: $m-navbar-height - $m-navbar-padding * 2;
 
 .app-navbar-placeholder {
   height: $navbar-height;
+}
+.mobile .app-navbar-placeholder {
+  height: $m-navbar-height;
 }
 
 .app-navbar {
@@ -75,5 +76,32 @@ $navbar-content-size: $navbar-height - $navbar-padding * 2;
     position: absolute;
     top: 100%; right: 0;
     width: 100px;
+  }
+}
+
+.mobile {
+  .app-navbar {
+    min-height: $m-navbar-height;
+
+
+    .app-navbar-text {
+      height: $m-navbar-height;
+      padding: $m-navbar-padding;
+      line-height: $m-navbar-content-size;
+    }
+
+    .app-navbar-button {
+      height: $m-navbar-height;
+      min-width: $m-navbar-height;
+      padding: $m-navbar-padding 0 $m-navbar-padding $m-navbar-padding;
+
+      img {
+        height: $m-navbar-content-size;
+      }
+
+      &.right {
+        padding: $m-navbar-padding $m-navbar-padding $m-navbar-padding 0;
+      }
+    }
   }
 }

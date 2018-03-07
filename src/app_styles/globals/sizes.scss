@@ -5,6 +5,11 @@ $icon-size: 48px;
 $icon-border-radius: 8px;
 $icon-spacing: 16px;
 
+$navbar-height: 24px;
+$navbar-padding: 4px;
+$m-navbar-height: 32px;
+$m-navbar-padding: 4px;
+
 @mixin clearfix() {
   &:after {
     content: '';

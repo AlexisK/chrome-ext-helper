@@ -1,3 +1,4 @@
+@import "globals";
 @import "../webview.mixin";
 
 .app-application-calendar {
@@ -6,4 +7,8 @@
 
 .wide .app-application-calendar .iframe-wrap {
   height: 520px;
+}
+
+.mobile .app-application-calendar .iframe-wrap {
+  height: calc(100vh - #{$m-navbar-height});
 }
