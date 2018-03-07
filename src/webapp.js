@@ -13,3 +13,5 @@ new Client(connectionService).init();
 connectionsStream.next(connectionService);
 
 domRefService.REF['mainContent'].classList.add('mobile');
+
+navigator.serviceWorker.register('service-worker-dummy.js', { scope: '/'});
