@@ -7,6 +7,7 @@ export class ClientStateService {
         this.focusedApplication$ = new BehaviourStream(null).debounce();
         this.runningApplications$ = new BehaviourStream([]);
         this.isMaximized$ = new BehaviourStream(false);
+        this.isAlwaysMaximized$ = new BehaviourStream(false);
     }
 }
 

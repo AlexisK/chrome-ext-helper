@@ -10,21 +10,12 @@ export class AuthService {
 
         this.user$ = new Stream();
         this.isAuthorized$ = new BehaviourStream(false);
-
-        this.user$ = new Promise(resolve => {
-            this.userNext = user => {
-                this.user = user;
-                this.isAuthorized = true;
-                resolve(user);
-            };
-        });
     }
 
     init() {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
-                this.userNext(this.user = user);
-                this.user$.next(user);
+                this.user$.next(this.user = user);
                 this.isAuthorized$.next(true);
             }
         });

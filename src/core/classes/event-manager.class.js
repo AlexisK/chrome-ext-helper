@@ -4,7 +4,7 @@ export class EventManager {
     }
 
     _iterateEvent(event, cb) {
-        if (typeof (event) == 'string') {
+        if (typeof (event) === 'string') {
             event = event.split('.');
         }
         while (event.length) {

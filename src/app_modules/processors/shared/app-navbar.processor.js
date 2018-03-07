@@ -66,6 +66,9 @@ export const AppNavbarProcessor = new Processor({
             && self.expandButtonImg.attr({src: './svg/minus.svg'})
             || self.expandButtonImg.attr({src: './svg/plus.svg'})
         );
+        clientStateService.isAlwaysMaximized$.subscribe(state => state
+            && self.expandButton.hide()
+            || self.expandButton.show());
         clientStateService.focusedApplication$.subscribe(app => {
             self.menuOpen$.next(false);
 
